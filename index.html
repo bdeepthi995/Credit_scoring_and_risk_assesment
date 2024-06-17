@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Scoring Predictor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            color: #333;
+        }
+
+        input[type="text"] {
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2,
+        p {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Credit Scoring Predictor</h1>
+        <form action="/predict" method="post">
+            <label for="income">Income:</label>
+            <input type="text" name="income" required><br>
+
+            <label for="limit">Limit:</label>
+            <input type="text" name="limit" required><br>
+
+            <label for="rating">Rating:</label>
+            <input type="text" name="rating" required><br>
+
+            <label for="cards">Cards:</label>
+            <input type="text" name="cards" required><br>
+
+            <label for="age">Age:</label>
+            <input type="text" name="age" required><br>
+
+            <label for="education">Education:</label>
+            <input type="text" name="education" required><br>
+
+            <input type="submit" value="Predict">
+        </form>
+        <h2>Predictions</h2>
+        {% if prediction %}
+        <h2>{{ prediction }}</h2>
+        <p>Loan Decision: {{ decision }}</p>
+        <p>Reason: {{ reason }}</p>
+        {% endif %}
+
+        <hr>
+        <h2>Upload CSV File</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" name="file" accept=".csv" required><br>
+            <input type="submit" value="Process CSV">
+        </form>
+    </div>
+</body>
+
+</html>
